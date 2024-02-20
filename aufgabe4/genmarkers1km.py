@@ -43,11 +43,12 @@ folium.Marker(
 # Add markers for nearby cell towers
 counter = 0
 MNC_ids = set()
+colors = {1:"green", 2:"red", 3:"orange", 7:"blue"}
 for index, row in nearby_towers_df.iterrows():
     folium.Marker(
         [row[7], row[6]],
         popup=f'Tower ID: {row[4]}',
-        icon=folium.Icon(color='blue')
+        icon=folium.Icon(color=colors[row[2]])
     ).add_to(map_kassel)
     MNC_ids.add(row[2])
     counter += 1
