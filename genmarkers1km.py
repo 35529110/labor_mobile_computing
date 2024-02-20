@@ -42,15 +42,18 @@ folium.Marker(
 
 # Add markers for nearby cell towers
 counter = 0
+MNC_ids = set()
 for index, row in nearby_towers_df.iterrows():
     folium.Marker(
         [row[7], row[6]],
         popup=f'Tower ID: {row[4]}',
         icon=folium.Icon(color='blue')
     ).add_to(map_kassel)
+    MNC_ids.add(row[2])
     counter += 1
 
 print(f"number of towers: {counter}")
+print(f"MCN IDs: {MNC_ids}")
 
 # Save the map to an HTML file
 map_file_path = 'nearytowers1km.html'
