@@ -48,7 +48,7 @@ def plot_data(data, name):
     plt.title(name)
     plt.ylim([-125, 0])
     plt.bar(range(len(data)), strength_list, width=1, color=color_map)
-    plt.savefig(name+'.png')
+    plt.savefig('aufgabe5/'+name+'.png')
     plt.close()
 
 
@@ -101,20 +101,20 @@ cell_towers_ot = get_cell_towers(raw_data_ot)
 data_mt = clean_data(raw_data_mt)
 data_ot = clean_data(raw_data_ot)
 
-clean_262()
+#clean_262()
 
-towers = load_clened_262()
+#towers = load_clened_262()
 
-cids = list(map(lambda t: t[3], cell_towers_mt))
-new_towers = []
-for tower in towers:
-    if int(tower[index_262.index('CID')]) in cids:
-        new_towers.append(tower)
-print(new_towers, len(new_towers))
+#cids = list(map(lambda t: t[3], cell_towers_mt))
+#new_towers = []
+#for tower in towers:
+#    if int(tower[index_262.index('CID')]) in cids:
+#        new_towers.append(tower)
+#print(new_towers, len(new_towers))
 
 
-#plot_data(data_mt, 'signal_plot_mt')
-#plot_data(data_ot, 'signal_plot_ot')
+plot_data(data_mt, 'signal_plot_mt')
+plot_data(data_ot, 'signal_plot_ot')
 
 #print('mt', len(data_mt), len(get_cell_id_set(data_mt)))
 #print('ot', len(data_ot), len(get_cell_id_set(data_ot)))
