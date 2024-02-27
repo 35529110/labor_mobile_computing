@@ -60,4 +60,4 @@ for file_name in files:
     folium.LayerControl().add_to(m)
 
     # Save the map to an HTML file
-    m.save(f'aufgabe3/path_{file_name}.html')
+    m.save(f'aufgabe3/lines_{file_name}.html')
