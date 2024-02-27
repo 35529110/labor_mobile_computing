@@ -10,7 +10,7 @@ towers = set()
 
 for file_name in files:
     # Open the measurement data file
-    with open("daten/signal-2024-02-07-ot.csv") as f:
+    with open("daten/"+file_name) as f:
         for line in f.readlines():
             parts = line.strip().split(',')
             # Check if the coordinate parts are valid numbers
