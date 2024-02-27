@@ -50,10 +50,10 @@ for coord in coords:
     if coord in towers:
         color = 'blue'
     folium.Marker(location=coord, icon=folium.Icon(color=color)).add_to(m)
-    
+
 
 fg.add_to(m)
 folium.LayerControl().add_to(m)
 
 # Save the map to an HTML file
-m.save('mesurement_ot_to_cell_lines.html')
+m.save('mesurement_mt_to_cell_lines.html')

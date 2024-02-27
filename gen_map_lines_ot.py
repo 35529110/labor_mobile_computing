@@ -4,6 +4,7 @@ lines = []  # Store lines between measurement points and LTE stations
 coords = set()  # Use a set to avoid duplicate points
 towers = set()
 
+
 # Open the measurement data file
 with open("daten/signal-2024-02-07-ot.csv") as f:
     for line in f.readlines():
