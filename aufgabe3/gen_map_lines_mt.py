@@ -2,6 +2,8 @@ import folium
 
 lines = []  # Store lines between measurement points and LTE stations
 coords = set()  # Use a set to avoid duplicate points
+towers = set()
+
 
 # Open the measurement data file
 with open("daten/signal-2024-02-07-mt.csv") as f:
@@ -25,6 +27,7 @@ with open("daten/signal-2024-02-07-mt.csv") as f:
                         if l_x != '?' and l_y != '?':
                             station_point = (float(l_x), float(l_y))  # Convert to float tuple
                             coords.add(station_point)  # Add to set of unique coordinates
+                            towers.add(station_point)
                             lines.append([measurement_point, station_point])
 
 # Check if we have any lines to plot, otherwise set a default location
@@ -43,10 +46,14 @@ for line in lines:
 
 # Add markers for each unique coordinate
 for coord in coords:
-    folium.Marker(location=coord).add_to(m)
+    color = 'red'
+    if coord in towers:
+        color = 'blue'
+    folium.Marker(location=coord, icon=folium.Icon(color=color)).add_to(m)
+
 
 fg.add_to(m)
 folium.LayerControl().add_to(m)
 
 # Save the map to an HTML file
-m.save('map_with_markers.html')
+m.save('mesurement_mt_to_cell_lines.html')
