@@ -9,7 +9,7 @@ locations_mt = pd.read_csv('daten/locations_mt.csv')
 
 def create_map(data, map_title="Cell Towers Map"):
     # Initialize a map centered around Kassel
-    map = folium.Map(location=[51.312711, 9.479746], zoom_start=12, tiles='OpenStreetMap')
+    map = folium.Map(location=[51.312711, 9.479746], zoom_start=12, tiles='Esri.WorldImagery')
     
     # Remove rows with invalid data
     valid_data = data.dropna().replace('?', pd.NA).dropna()  # Replace '?' with NA and then drop
