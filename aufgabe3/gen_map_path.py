@@ -16,12 +16,13 @@ def get_heatmap_color(value):
 
 files = filter(lambda s: s.startswith('signal'), os.listdir("daten"))
 
-lines = []  # Store lines between measurement points and LTE stations
-coords = []  # Use a set to avoid duplicate points
 
 
 
 for file_name in files:
+    lines = []  # Store lines between measurement points and LTE stations
+    coords = []  # Use a set to avoid duplicate points
+
     max_sig = -1000
     min_sig = 0
     # Open the measurement data file
