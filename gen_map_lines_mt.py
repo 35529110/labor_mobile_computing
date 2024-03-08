@@ -45,12 +45,13 @@ for line in lines:
     folium.PolyLine(locations=line, weight=2, color='blue').add_to(fg)
 
 # Add markers for each unique coordinate
+"""
 for coord in coords:
     color = 'red'
     if coord in towers:
         color = 'blue'
     folium.Marker(location=coord, icon=folium.Icon(color=color, icon='home', prefix='fa')).add_to(m)
-
+"""
 
 fg.add_to(m)
 folium.LayerControl().add_to(m)
