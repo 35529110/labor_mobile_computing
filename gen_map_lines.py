@@ -65,7 +65,7 @@ for file_name in files:
         folium.PolyLine(locations=line[:2], weight=3, color='orange').add_to(fg)
     # Add lines to the map
     for line in lines:
-        folium.PolyLine(locations=line, weight=3, color='blue').add_to(fg)
+        folium.PolyLine(locations=line, weight=2, color='blue').add_to(fg)
     
     
 
