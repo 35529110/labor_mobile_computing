@@ -25,7 +25,7 @@ for file_name in files:
     max_sig = -1000
     min_sig = 0
     # Open the measurement data file
-    with open("daten/signal-2024-02-07-ot.csv") as f:
+    with open("daten/"+file_name) as f:
         for line in f.readlines():
             parts = line.strip().split(',')
             # Check if the coordinate parts are valid numbers
@@ -38,7 +38,6 @@ for file_name in files:
             max_sig = max(max_sig, int(sig))
             
 
-    print(max_sig, min_sig)
     for i in range(len(coords)-1):
         color_index = (coords[i][2]-max_sig) / (min_sig-max_sig)
         lines.append((coords[i][:2], coords[i+1][:2], color_index))
