@@ -40,7 +40,7 @@ for file_name in files:
     for line in lines:
         rgb = map(lambda x: int(x * 255), colorsys.hsv_to_rgb(line[2], 1, 1))
         color = '#%02x%02x%02x' % tuple(rgb)
-        folium.PolyLine(locations=line[:2], weight=2, color=color).add_to(fg)
+        folium.PolyLine(locations=line[:2], weight=10, color=color).add_to(fg)
 
         
 
