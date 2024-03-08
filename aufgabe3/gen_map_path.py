@@ -1,6 +1,18 @@
 import colorsys
 import folium
 import os
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+
+def get_heatmap_color(value):
+    norm = mcolors.Normalize(vmin=0, vmax=1)
+    cmap = plt.cm.plasma  # Du kannst hier auch andere Colormaps auswählen (z.B. 'viridis', 'plasma', 'inferno', usw.)
+
+    rgba_color = cmap(norm(value))
+    rgb_color = (rgba_color[0], rgba_color[1], rgba_color[2])
+
+    return rgb_color
 
 files = filter(lambda s: s.startswith('signal'), os.listdir("daten"))
 
@@ -38,7 +50,9 @@ for file_name in files:
 
     # Add lines to the map
     for line in lines:
-        rgb = map(lambda x: int(x * 255), colorsys.hsv_to_rgb(line[2], 1, 1))
+        #rgb = map(lambda x: int(x * 255), colorsys.hsv_to_rgb(line[2], 1, 1))
+        rgb = get_heatmap_color(line[2])
+        rgb = [int(c*255) for c in rgb]
         color = '#%02x%02x%02x' % tuple(rgb)
         folium.PolyLine(locations=line[:2], weight=10, color=color).add_to(fg)
 
