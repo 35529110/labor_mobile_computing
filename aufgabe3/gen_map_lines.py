@@ -3,12 +3,13 @@ import os
 
 files = filter(lambda s: s.startswith('signal'), os.listdir("daten"))
 
-lines = []  # Store lines between measurement points and LTE stations
-coords = set()  # Use a set to avoid duplicate points
-towers = set()
 
 
 for file_name in files:
+    lines = []  # Store lines between measurement points and LTE stations
+    coords = list()  # Use a set to avoid duplicate points
+    towers = set()
+
     # Open the measurement data file
     with open("daten/"+file_name) as f:
         for line in f.readlines():
@@ -17,7 +18,7 @@ for file_name in files:
             if parts[2].isdigit():  # Assuming this checks the validity of the data
                 x, y, mnc, cid = parts[0], parts[1], parts[5], parts[6]
                 measurement_point = (float(x), float(y))  # Convert to float tuple
-                coords.add(measurement_point)  # Add to the set of unique coordinates
+                coords.append(measurement_point)  # Add to the set of unique coordinates
                 
                 # Open the locations file for LTE stations
                 with open("daten/locations_ot.csv") as g:
@@ -30,7 +31,7 @@ for file_name in files:
                             # Only add a line if the station has valid coordinates
                             if l_x != '?' and l_y != '?':
                                 station_point = (float(l_x), float(l_y))  # Convert to float tuple
-                                coords.add(station_point)  # Add to set of unique coordinates
+                                #coords.add(station_point)  # Add to set of unique coordinates
                                 towers.add(station_point)
                                 lines.append([measurement_point, station_point])
 
@@ -49,11 +50,14 @@ for file_name in files:
         folium.PolyLine(locations=line, weight=2, color='blue').add_to(fg)
 
     # Add markers for each unique coordinate
+    for coord in towers:
+        folium.Marker(location=coord, icon=folium.Icon(color='blue')).add_to(m)
+
+    last_coord = coords[-1]
     for coord in coords:
-        color = 'red'
-        if coord in towers:
-            color = 'blue'
-        folium.Marker(location=coord, icon=folium.Icon(color=color)).add_to(m)
+        if coord not in towers:
+            folium.PolyLine(locations=(last_coord, coord), weight=5, color='orange').add_to(fg)
+            last_coord = coord
         
 
     fg.add_to(m)
