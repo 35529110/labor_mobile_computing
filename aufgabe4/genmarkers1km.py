@@ -31,7 +31,7 @@ nearby_towers_df = cell_towers_df[cell_towers_df['distance_to_uni'] <= 1]
 import folium
 
 # Create a map centered around the University of Kassel
-map_kassel = folium.Map(location=[uni_kassel_coords[1], uni_kassel_coords[0]], zoom_start=15)
+map_kassel = folium.Map(location=[uni_kassel_coords[1], uni_kassel_coords[0]], zoom_start=15, tiles='Esri.WorldImagery')
 
 # Add a marker for the University of Kassel
 folium.Marker(
