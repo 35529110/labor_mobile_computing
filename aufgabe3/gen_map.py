@@ -16,7 +16,6 @@ def create_map(data, map_title="Cell Towers Map"):
                 latitude = float(l_y)
                 longitude = float(l_x)
                 folium.Marker([latitude, longitude], popup=f"ID: {data[1]}").add_to(map)
-                towers_found += 1
             except ValueError as e:
                 # Skip rows with invalid numeric data
                 print(e)
