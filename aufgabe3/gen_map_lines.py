@@ -12,6 +12,10 @@ for file_name in files:
 
     # Open the measurement data file
     with open("daten/"+file_name) as f:
+        if "-mt." in file_name:
+            mode = "mt"
+        else:
+            mode = "ot"
         for line in f.readlines():
             parts = line.strip().split(',')
             # Check if the coordinate parts are valid numbers
@@ -21,7 +25,8 @@ for file_name in files:
                 coords.append(measurement_point)  # Add to the set of unique coordinates
                 
                 # Open the locations file for LTE stations
-                with open("daten/locations_ot.csv") as g:
+                
+                with open(f"daten/locations_{mode}.csv") as g:
                     for location_line in g.readlines():
                         l_parts = location_line.strip().split(',')
                         l_mnc, l_cid = l_parts[0].strip(), l_parts[1].strip()
