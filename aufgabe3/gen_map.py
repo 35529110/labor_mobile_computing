@@ -3,7 +3,7 @@ import folium
 
 def create_map(data, map_title="Cell Towers Map"):
     # Initialize a map centered around Kassel
-    map = folium.Map(location=[51.312711, 9.479746], zoom_start=12, tiles='Esri.WorldImagery')
+    map = folium.Map(location=[51.312711, 9.479746], zoom_start=15, tiles='Esri.WorldImagery')
 
     for point in data:
         point = point.strip().split(',')

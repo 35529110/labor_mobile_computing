@@ -47,7 +47,7 @@ for file_name in files:
         initial_location = [0, 0]  # Default location if no lines
 
     # Create a map centered around the first line's start coordinate
-    m = folium.Map(location=initial_location, zoom_start=10)
+    m = folium.Map(location=initial_location, zoom_start=15)
     fg = folium.FeatureGroup(name="LTE Connections")
 
     # Add lines to the map
