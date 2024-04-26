@@ -1,11 +1,5 @@
 import folium
 
-# Define a function to create a folium map
-import pandas as pd
-
-
-
-
 
 def create_map(data, map_title="Cell Towers Map"):
     # Initialize a map centered around Kassel
@@ -18,7 +12,6 @@ def create_map(data, map_title="Cell Towers Map"):
         if l_x != '?' and l_y != '?':
     
             # Add points to the map
-            towers_found = 0
             try:
                 latitude = float(l_y)
                 longitude = float(l_x)
@@ -30,7 +23,6 @@ def create_map(data, map_title="Cell Towers Map"):
                 continue
 
     # Return the map object
-    print(towers_found)
     return map
 
 # Create maps for both datasets
@@ -41,4 +33,3 @@ with open('daten/locations_ot.csv') as locations_ot:
 with open('daten/locations_mt.csv') as locations_mt:
     map_mt = create_map(locations_mt.readlines(), "MT Cell Towers around Kassel")
     map_mt.save('aufgabe3/map_mt.html')
-
