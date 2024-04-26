@@ -7,8 +7,8 @@ files = filter(lambda s: s.startswith('signal'), os.listdir("daten"))
 
 for file_name in files:
     lines = []  # Store lines between measurement points and LTE stations
-    coords = list()  # Use a set to avoid duplicate points
-    towers = set()
+    coords = list() 
+    towers = set() # Use a set to avoid duplicate points
 
     # Open the measurement data file
     with open("daten/"+file_name) as f:
